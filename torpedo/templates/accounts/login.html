@@ -1,0 +1,22 @@
+{% extends "accounts/accounts_base.html" %}
+
+{% block content %}
+
+<h1>Log in</h1>
+
+{% if form.errors %}
+<p class="error">Wrong username or password!</p>
+{% endif %}
+
+{% if next %}
+<form action="/account/authenticate/?next={{ next }}" method="post" id="login_form">
+{% else %}
+<form action="/account/authenticate/" method="post" id="login_form">
+{% endif %}
+	{% csrf_token %}
+	<input type="text" name="username" value="" placeholder="Username" autofocus />
+	<input type="password" name="password"  value="" placeholder="Password" />
+	<input type="submit" value="Yes please!" />
+</form>
+<p>Don't have an account? <a href="/account/register/">Get one!</a></p>
+{% endblock %}

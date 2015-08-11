@@ -1,0 +1,17 @@
+<html>
+	<head>
+		<title>HTTP Torpedo</title>
+	</head>
+	<body>
+		<div>
+    		{% if user.is_anonymous %}
+    		<a href="{% url 'django.contrib.auth.views.login' %}">login</a>
+    		{% else %}
+    		{{ user }}
+    		<a href="{% url 'django.contrib.auth.views.logout' %}">logout</a>
+    		{% endif %}
+    	</div>
+		{% block content %}
+		{% endblock %}
+	</body>
+</html>
