@@ -1,4 +1,4 @@
-# System
+# Native
 import json
 
 # Framework
@@ -16,6 +16,12 @@ from django.core import serializers
 # 3rd party
 from braces.views import LoginRequiredMixin
 
+
+################
+#              #
+#    SYSTEM    #
+#              #
+################
 
 class root(View):
 	template_name = 'torpedo/root.html'
