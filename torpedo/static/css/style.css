@@ -1,3 +1,25 @@
 body {
+	background-color: #555;
+	color: #ABCDEF;
+	font-family: 'Open Sans', Helvetica, sans-serif;
+}
+
+a {
+	text-decoration: none;
+	color: #FEDCBA;
+	border-bottom: 1px solid #FEDCBA;
+}
+
+hr {
+	border: none;
+	border-bottom: 1px solid #ABCDEF;
+}
+
+.content {
+	width: 60%;
+	max-width: 900px;
+	margin: auto;
+	padding: 20px;
 	background-color: #777;
+	box-shadow: 0 0 50px rgba(0, 0, 0, 0.4);
 }

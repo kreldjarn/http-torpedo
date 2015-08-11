@@ -1,4 +1,9 @@
 {% extends "base.html" %}
 {% block content %}
-<h1>Root, y'all!</h1>
+<h1>HTTP Torpedo</h1>
+<hr />
+
+<form action="{% url 'upload_log' %}" method="post">
+	<input type="file" name="log" />
+</form>
 {% endblock %}

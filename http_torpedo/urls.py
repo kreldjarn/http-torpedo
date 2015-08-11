@@ -3,11 +3,15 @@ from django.contrib import admin
 from torpedo.views import *
 
 urlpatterns = [
+	# LOGIC
 	url(r'^$', root.as_view()),
-    url(r'^admin/', include(admin.site.urls)),
-    #url(r'^login/$', 'django.contrib.auth.views.login'),
-    #url(r'^logout/$', 'django.contrib.auth.views.logout'),
+	url(r'^upload-log/$', upload_log.as_view()),
 
+
+
+
+
+	# SYSTEM
     url(r'^admin/', include(admin.site.urls)),
 
     url(r'^login/$', login.as_view(), name='login'),
