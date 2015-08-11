@@ -10,12 +10,12 @@ urlpatterns = [
 
     url(r'^admin/', include(admin.site.urls)),
 
-    url(r'^account/login/$', login.as_view(), name='login'),
-    url(r'^account/authenticate/$', auth_view, name='authenticate'),
-    url(r'^account/logout/$', logout.as_view(), name='logout'),
-    url(r'^account/logged/$', logged.as_view()),
-    url(r'^account/invalid/$', invalid.as_view()),
+    url(r'^login/$', login.as_view(), name='login'),
+    url(r'^authenticate/$', auth_view, name='authenticate'),
+    url(r'^logout/$', logout.as_view(), name='logout'),
+    url(r'^logged/$', logged.as_view()),
+    url(r'^invalid/$', invalid.as_view()),
 
-    url(r'^account/register/$', register.as_view(), name='register'),
-    url(r'^account/success/$', success.as_view()),
+    url(r'^register/$', register.as_view(), name='register'),
+    url(r'^success/$', success.as_view(), name='success'),
 ]

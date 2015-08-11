@@ -49,7 +49,7 @@ class register(View):
 		filled_form = UserCreationForm(request.POST)
 		if filled_form.is_valid():
 			filled_form.save()
-			return HttpResponseRedirect('/account/success/')
+			return HttpResponseRedirect('/success/')
 		args = {}
 		args.update(csrf(request))
 		args['form'] = UserCreationForm()
@@ -79,7 +79,7 @@ def auth_view(request):
 	user = auth.authenticate(username=username, password=password)
 
 	if user is None:
-		return HttpResponseRedirect('/account/invalid/')
+		return HttpResponseRedirect('/invalid/')
 	auth.login(request, user)
 
 	next = request.GET.get('next')
