@@ -23,7 +23,7 @@ from braces.views import LoginRequiredMixin
 #              #
 ################
 
-class root(View):
+class root(LoginRequiredMixin, View):
     template_name = 'torpedo/root.html'
 
     def get(self, request):
@@ -34,7 +34,7 @@ class upload_log(LoginRequiredMixin, View):
     template_name = 'torpedo/upload_log.html'
 
     def post(self, request):
-        
+
         return render(request, self.template_name, locals())
 
 

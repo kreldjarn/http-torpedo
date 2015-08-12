@@ -8,15 +8,17 @@
 <p class="error">Wrong username or password!</p>
 {% endif %}
 
+<div class="input-container">
 {% if next %}
 <form action="{% url 'authenticate' %}?next={{ next }}" method="post" id="login_form">
 {% else %}
 <form action="{% url 'authenticate' %}" method="post" id="login_form">
 {% endif %}
 	{% csrf_token %}
-	<input type="text" name="username" value="" placeholder="Username" autofocus />
-	<input type="password" name="password"  value="" placeholder="Password" />
-	<input type="submit" value="Yes please!" />
+	<input class="input-field" type="text" name="username" value="" placeholder="Username" autofocus />
+	<input class="input-field" type="password" name="password"  value="" placeholder="Password" />
+	<input class="input-button" type="submit" value="Yes please!" />
 </form>
+</div>
 <p>Don't have an account? <a href="{% url 'register' %}">Get one!</a></p>
 {% endblock %}

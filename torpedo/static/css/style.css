@@ -1,18 +1,23 @@
 body {
-	background-color: #555;
-	color: #ABCDEF;
-	font-family: 'Open Sans', Helvetica, sans-serif;
+	background-color: #fdf7ef;
+	color: #555;
+	font-family: 'Fauna One', serif;
 }
 
 a {
 	text-decoration: none;
-	color: #FEDCBA;
-	border-bottom: 1px solid #FEDCBA;
+	color: #777;
+	border-bottom: 1px solid #777;
+}
+
+a:hover {
+	color: #999;
+	border-color: #999;
 }
 
 hr {
 	border: none;
-	border-bottom: 1px solid #ABCDEF;
+	border-bottom: 1px solid #555;
 }
 
 .content {
@@ -20,6 +25,54 @@ hr {
 	max-width: 900px;
 	margin: auto;
 	padding: 20px;
-	background-color: #777;
+	background-color: #fefbf7;
 	box-shadow: 0 0 50px rgba(0, 0, 0, 0.4);
+	//border: 1px solid #777;
+}
+
+.input-field {
+	margin-bottom: 15px;
+	border: 1px solid #555;
+}
+
+.input-button {
+	border-radius: 0;
+	cursor: pointer;
+	background: #fff;
+}
+
+.input-container {
+	max-width: 300px;
+	margin: auto;
+}
+
+input {
+	display: block;
+	width: 100%;
+	padding: 10px;
+	border: 1px solid #555;
+}
+
+input::-webkit-input-placeholder {
+   font-family: 'Fauna One', serif;
+   font-size: 14px;
+   line-height: 15px;
+}
+
+input:-moz-placeholder { /* Firefox 18- */
+   font-family: 'Fauna One', serif;
+   font-size: 14px;
+   line-height: 15px;
+}
+
+input::-moz-placeholder {  /* Firefox 19+ */
+   font-family: 'Fauna One', serif; 
+   font-size: 14px;
+   line-height: 15px;
+}
+
+input:-ms-input-placeholder {  
+   font-family: 'Fauna One', serif;
+   font-size: 14px;
+   line-height: 15px;
 }
