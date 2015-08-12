@@ -4,6 +4,14 @@
 <hr />
 
 <form action="{% url 'upload_log' %}" method="post">
-	<input type="file" name="log" />
+	<div class="input-container">
+		<label for="log">Select log file</label>
+		<input class="input-field" type="file" name="log" />
+		<label for="rps">Requests per second</label>
+		<input class="input-field" type="number" name="rps" />
+		<label for="duration">Duration in seconds</label>
+		<input class="input-field" type="number" name="duration" />
+		<input class="input-button" type="submit" value="Hit me!" />
+	</div>
 </form>
 {% endblock %}

@@ -24,10 +24,9 @@ hr {
 	width: 60%;
 	max-width: 900px;
 	margin: auto;
-	padding: 20px;
+	padding: 20px 50px;
 	background-color: #fefbf7;
 	box-shadow: 0 0 50px rgba(0, 0, 0, 0.4);
-	//border: 1px solid #777;
 }
 
 .input-field {
@@ -39,6 +38,9 @@ hr {
 	border-radius: 0;
 	cursor: pointer;
 	background: #fff;
+	font-family: 'Fauna One', serif;
+	font-size: 14px;
+	color: #555;
 }
 
 .input-container {
@@ -49,8 +51,15 @@ hr {
 input {
 	display: block;
 	width: 100%;
-	padding: 10px;
+	padding: 0 10px;
+	height: 40px;
 	border: 1px solid #555;
+	font-family: 'Fauna One', serif;
+	font-size: 14px;
+}
+
+input[type=file] {
+	padding-top: 10px;
 }
 
 input::-webkit-input-placeholder {
