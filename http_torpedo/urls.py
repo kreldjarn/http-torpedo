@@ -5,11 +5,8 @@ from torpedo.views import *
 urlpatterns = [
 	# LOGIC
 	url(r'^$', root.as_view()),
+    url(r'^results$', results.as_view()),
 	url(r'^upload-log/$', upload_log.as_view(), name='upload_log'),
-
-
-
-
 
 	# SYSTEM
     url(r'^admin/', include(admin.site.urls)),

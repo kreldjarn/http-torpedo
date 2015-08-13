@@ -29,6 +29,12 @@ class root(LoginRequiredMixin, View):
     def get(self, request):
         return render(request, self.template_name, locals())
 
+class results(LoginRequiredMixin, View):
+    template_name = 'torpedo/results.html'
+
+    def get(self, request):
+        return render(request, self.template_name, locals())
+
 
 class upload_log(LoginRequiredMixin, View):
     template_name = 'torpedo/upload_log.html'
