@@ -104,6 +104,13 @@ input[type=checkbox] {
     overflow: hidden;
 }
 
+.regions {
+	border: 1px solid #555;
+	padding: 15px;
+	padding-bottom: 5px;
+	margin-bottom: 25px;
+}
+
 .checkbox-group {
 	margin-bottom: 10px;
 }
