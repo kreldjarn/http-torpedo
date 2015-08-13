@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% block results %}
+{% block content %}
 	<h1>Results from load test</h1>
 	<hr />
 	<div id="results-container">
@@ -20,7 +20,7 @@
 				error_results.push([code, parseInt(errors[index+1])]);
 			})
 			$('#total-errors').text('Total errors: ' + errors[0]);
-			
+
 			$(function () {
 				    $('#response-times-container').highcharts({
 				        chart: {
