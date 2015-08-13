@@ -105,6 +105,22 @@ input[type=checkbox] {
     overflow: hidden;
 }
 
+.chart-container{
+	margin: 40px auto;
+	height: 400px;
+	padding-left: 20px;
+	padding-right: 20px;
+}
+
+#first-heading-results{
+	margin-top: 40px;
+}
+
+#results-container{
+	padding-left: 20px;
+	padding-right: 20px;
+}
+
 .regions {
 	border: 1px solid #555;
 	padding: 15px;
