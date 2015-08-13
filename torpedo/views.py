@@ -12,10 +12,37 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django.core.context_processors import csrf
 from django.core import serializers
+from django.http import HttpResponse
 
 # 3rd party
 from braces.views import LoginRequiredMixin
+import requests
 
+# Models
+from torpedo.models import TestRun
+
+# Constants
+SERVERS = [
+	'http://noc2.srv.oz.com:6666'
+];
+
+##############
+#            #
+#    VARS    #
+#            #
+##############
+
+source_regions = {
+    'us-east-1' : 'ec2.us-east-1.amazonaws.com',
+    'us-west-2' : 'ec2.us-west-2.amazonaws.com',
+    'us-west-1' : 'ec2.us-west-1.amazonaws.com',
+    'eu-west-1' : 'ec2.eu-west-1.amazonaws.com',
+    'eu-central-1' : 'ec2.eu-central-1.amazonaws.com',
+    'ap-southeast-1' : 'ec2.ap-southeast-1.amazonaws.com',
+    'ap-southeast-2' : 'ec2.ap-southeast-2.amazonaws.com',
+    'ap-northeast-1' : 'ec2.ap-northeast-1.amazonaws.com',
+    'sa-east-1' : 'ec2.sa-east-1.amazonaws.com'
+}
 
 ################
 #              #
@@ -40,7 +67,9 @@ class upload_log(LoginRequiredMixin, View):
     template_name = 'torpedo/upload_log.html'
 
     def post(self, request):
-
+        user = request.POST.get('user')
+        print(user)
+        print(source_regions)
         return render(request, self.template_name, locals())
 
 
@@ -99,7 +128,7 @@ def auth_view(request):
     if next:
         return HttpResponseRedirect(next)
     return HttpResponseRedirect('/')
-    
+
 class logged(View):
     def get(self, request):
         return render_to_response('accounts/logged.html', {'name': request.user.username})
@@ -107,3 +136,17 @@ class logged(View):
 class invalid(View):
     def get(self, request):
         return render_to_response('accounts/invalid.html')
+
+@login_required
+def run_test(request):
+	server = SERVERS[0] # TODO: this.
+	payload = { 'file': open('/tmp/test.txt', 'rb') }
+	data = { 'calls': '1', 'conns': '1', 'domain': 'www.mbl.is' }
+	r = requests.post(server, data=data, files=payload, timeout=10000)
+	stuff = json.loads(r.content)
+
+	x = TestRun()
+	x.json = stuff
+	x.save()
+
+	return HttpResponse(r.content)
