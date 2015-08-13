@@ -1,1 +1,1 @@
-web: gunicorn http-torpedo.wsgi --log-file -
+web: gunicorn http_torpedo.wsgi --log-file -
