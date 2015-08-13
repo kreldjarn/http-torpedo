@@ -17,6 +17,24 @@ from django.core import serializers
 from braces.views import LoginRequiredMixin
 
 
+##############
+#            #
+#    VARS    #
+#            #
+##############
+
+source_regions = {
+    'us-east-1' : 'ec2.us-east-1.amazonaws.com',
+    'us-west-2' : 'ec2.us-west-2.amazonaws.com',
+    'us-west-1' : 'ec2.us-west-1.amazonaws.com',
+    'eu-west-1' : 'ec2.eu-west-1.amazonaws.com',
+    'eu-central-1' : 'ec2.eu-central-1.amazonaws.com',
+    'ap-southeast-1' : 'ec2.ap-southeast-1.amazonaws.com',
+    'ap-southeast-2' : 'ec2.ap-southeast-2.amazonaws.com',
+    'ap-northeast-1' : 'ec2.ap-northeast-1.amazonaws.com',
+    'sa-east-1' : 'ec2.sa-east-1.amazonaws.com'
+}
+
 ################
 #              #
 #    SYSTEM    #
@@ -34,7 +52,9 @@ class upload_log(LoginRequiredMixin, View):
     template_name = 'torpedo/upload_log.html'
 
     def post(self, request):
-
+        user = request.POST.get('user')
+        print(user)
+        print(source_regions)
         return render(request, self.template_name, locals())
 
 
