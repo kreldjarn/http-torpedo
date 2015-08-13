@@ -6,11 +6,41 @@
 <form action="{% url 'upload_log' %}" method="post">
 	<div class="input-container">
 		<label for="log">Select log file</label>
-		<input class="input-field" type="file" name="log" />
+		<input class="input-field" type="file" name="log" id="log" />
 		<label for="rps">Requests per second</label>
-		<input class="input-field" type="number" name="rps" />
+		<input class="input-field" type="number" name="rps" id="rps" />
 		<label for="duration">Duration in seconds</label>
-		<input class="input-field" type="number" name="duration" />
+		<input class="input-field" type="number" name="duration" id="duration" />
+		
+		<label>Source regions</label>
+		<label class="checkbox-label" for="us-east-1">
+			<input type="checkbox" name="us-east-1" id="us-east-1" />US East (N. Virginia)
+		</label>
+		<label class="checkbox-label" for="us-west-2">
+		<input type="checkbox" name="us-west-2" id="us-west-2" />
+		US West (Oregon)</label>
+		<label class="checkbox-label" for="us-west-1">
+		<input type="checkbox" name="us-west-1" id="us-west-1" />
+		US West (N. California)</label>
+		<label class="checkbox-label" for="eu-west-1">
+		<input type="checkbox" name="eu-west-1" id="eu-west-1" />
+		EU (Ireland)</label>
+		<label class="checkbox-label" for="eu-central-1">
+		<input type="checkbox" name="eu-central-1" id="eu-central-1" />
+		EU (Frankfurt)</label>
+		<label class="checkbox-label" for="ap-southeast-1">
+		<input type="checkbox" name="ap-southeast-1" id="ap-southeast-1" />
+		Asia Pacific (Singapore)</label>
+		<label class="checkbox-label" for="ap-southeast-2">
+		<input type="checkbox" name="ap-southeast-2" id="ap-southeast-2" />
+		Asia Pacific (Sydney)</label>
+		<label class="checkbox-label" for="ap-northeast-1">
+		<input type="checkbox" name="ap-northeast-1" id="ap-northeast-1" />
+		Asia Pacific (Tokyo)</label>
+		<label class="checkbox-label" for="sa-east-1">
+		<input type="checkbox" name="sa-east-1" id="sa-east-1" />
+		South America (Sao Paulo)</label>
+
 		<input class="input-button" type="submit" value="Hit me!" />
 	</div>
 </form>

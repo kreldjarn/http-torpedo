@@ -85,3 +85,22 @@ input:-ms-input-placeholder {
    font-size: 14px;
    line-height: 15px;
 }
+
+
+
+label.checkbox-label {
+    display: block;
+    padding-left: 15px;
+    text-indent: -15px;
+}
+
+input[type=checkbox] {
+    width: 13px;
+    height: 13px;
+    padding: 0;
+    margin:0;
+    vertical-align: bottom;
+    position: relative;
+    top: -1px;
+    overflow: hidden;
+}
