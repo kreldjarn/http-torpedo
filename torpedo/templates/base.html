@@ -3,19 +3,32 @@
 	<head>
 		<link href='https://fonts.googleapis.com/css?family=Fauna+One' rel='stylesheet' type='text/css'>
   		<link type="text/css" rel="stylesheet" href="{% static 'css/style.css' %}" />
-		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 		<script src="http://code.highcharts.com/highcharts.js"></script>
+		<!-- Latest compiled and minified CSS -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
+
+		<!-- Latest compiled and minified JavaScript -->
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 		<title>HTTP Torpedo</title>
 	</head>
 	<body>
-		<div>
-    		{% if user.is_anonymous %}
-    		<a href="{% url 'login' %}">login</a>
-    		{% else %}
-    		{{ user }}
-    		<a href="{% url 'logout' %}">logout</a>
-    		{% endif %}
-    	</div>
+		{% if user.is_anonymous %}
+			
+	    {% else %}
+		    <div id="dropdown-container">
+				<div class="dropdown" id="user-dropdown">
+				  <button id="user-dropdown-button" class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+				    {{ user }}
+				    <span class="caret"></span>
+				  </button>
+				  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+				    <li><a href="{% url 'logout' %}">Log out</a></li>
+				  </ul>
+				</div>
+			</div> 
+	    {% endif %}
     	<div class="content">
 			{% block content %}
 			{% endblock %}
