@@ -110,7 +110,7 @@ class upload_log(LoginRequiredMixin, View):
 
     	server = SERVERS[0] # TODO: this.
     	payload = { 'file': open('/tmp/LULZ') }
-    	data = { 'calls': calls, 'conns': cons, 'domain': 'www.mbl.is' }
+    	data = { 'calls': calls, 'conns': cons, 'domain': domain }
     	r = requests.post(server, data=data, files=payload, timeout=10000)
     	stuff = json.loads(r.content)
         jsonString = r.content
