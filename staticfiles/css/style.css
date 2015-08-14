@@ -1,0 +1,137 @@
+body {
+	background-color: #fdf7ef;
+	color: #555;
+	font-family: 'Fauna One', serif;
+}
+
+a {
+	text-decoration: none;
+	color: #777;
+	border-bottom: 1px solid #777;
+}
+
+a:hover {
+	color: #999;
+	border-color: #999;
+}
+
+hr {
+	border: none;
+	border-bottom: 1px solid #555;
+}
+
+.content {
+	width: 60%;
+	max-width: 900px;
+	margin: auto;
+	padding: 20px 50px;
+	background-color: #fefbf7;
+	box-shadow: 0 0 50px rgba(0, 0, 0, 0.4);
+}
+
+.input-field {
+	margin-bottom: 15px;
+	border: 1px solid #555;
+}
+
+.input-button {
+	border-radius: 0;
+	cursor: pointer;
+	background: #fff;
+	font-family: 'Fauna One', serif;
+	font-size: 14px;
+	color: #555;
+}
+
+.input-container {
+	max-width: 300px;
+	margin: auto;
+}
+
+input {
+	display: block;
+	width: 100%;
+	padding: 0 10px;
+	height: 40px;
+	border: 1px solid #555;
+	font-family: 'Fauna One', serif;
+	font-size: 14px;
+}
+
+input[type=file] {
+	padding-top: 10px;
+}
+
+input::-webkit-input-placeholder {
+   font-family: 'Fauna One', serif;
+   font-size: 14px;
+   line-height: 15px;
+}
+
+input:-moz-placeholder { /* Firefox 18- */
+   font-family: 'Fauna One', serif;
+   font-size: 14px;
+   line-height: 15px;
+}
+
+input::-moz-placeholder {  /* Firefox 19+ */
+   font-family: 'Fauna One', serif; 
+   font-size: 14px;
+   line-height: 15px;
+}
+
+input:-ms-input-placeholder {  
+   font-family: 'Fauna One', serif;
+   font-size: 14px;
+   line-height: 15px;
+}
+
+
+
+label.checkbox-label {
+    line-height: 15px;
+}
+
+input[type=checkbox] {
+	display: inline-block;
+    width: 13px;
+    height: 13px;
+    padding: 0;
+    margin:0;
+    margin-right: 5px;
+    vertical-align: bottom;
+    position: relative;
+    top: -1px;
+    overflow: hidden;
+}
+
+.chart-container{
+	margin: 40px auto;
+	height: 400px;
+	padding-left: 20px;
+	padding-right: 20px;
+}
+
+#first-heading-results{
+	margin-top: 40px;
+}
+
+#results-container{
+	padding-left: 20px;
+	padding-right: 20px;
+}
+
+.regions {
+	border: 1px solid #555;
+	padding: 15px;
+	padding-bottom: 5px;
+	margin-bottom: 25px;
+}
+
+.checkbox-group {
+	margin-bottom: 10px;
+}
+
+#results-container h3{
+	padding-left: 20px;
+}
