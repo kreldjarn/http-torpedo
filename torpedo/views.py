@@ -54,6 +54,7 @@ SOURCE_REGIONS = {
 
 def prune_logs(log):
     # Prune away non-app[web] logs, Isolate JSON part of logs
+    log = log.split('\n')
     log = map(lambda l: l.split(': ', 1)[1], filter(lambda l: l[:7] == 'app[web', map(lambda l: l.split(' ', 1)[1], log)))
     # Parse each line into dict
     log = map(lambda l: json.loads(l), log)
@@ -93,18 +94,32 @@ class upload_log(LoginRequiredMixin, View):
 
     def post(self, request):
         user = request.user
-        log = prune_logs(open(request.POST.get('log'), 'r'))
+        body = ''
+        for chunk in request.FILES['log']:
+            body += chunk
+        print body
+        log = prune_logs(body)
         log = '\x00'.join(log)
+        with open('/tmp/LULZ', 'wb+') as dest:
+            dest.write(log)
+
+        domain = request.POST.get('domain', 'www.mbl.is')
         cons = request.POST.get('parallel', 0)
         rate = request.POST.get('rate', 0)
         calls = request.POST.get('requests', 0)
 
-        
+    	server = SERVERS[0] # TODO: this.
+    	payload = { 'file': open('/tmp/LULZ') }
+    	data = { 'calls': calls, 'conns': cons, 'domain': 'www.mbl.is' }
+    	r = requests.post(server, data=data, files=payload, timeout=10000)
+    	stuff = json.loads(r.content)
+        jsonString = r.content
 
-        return render(request, self.template_name, locals())
+    	x = TestRun()
+    	x.json = stuff
+    	x.save()
 
-
-
+        return render(request, 'torpedo/results.html', locals())
 
 #################
 #               #

@@ -10,7 +10,7 @@
 		<h3 id='requests-rate'></h3>
 		<h3 id='replies'></h3>
 		<h3 id='response-time'></h3>
-		<h3 id='transfer-time'></h3>	
+		<h3 id='transfer-time'></h3>
 		<h2>Errors returned</h2>
 		<h3 id='total-errors'></h3>
 		<div id='errors-chart' class="chart-container"></div>
@@ -19,7 +19,9 @@
 	</div>
 	<script>
 		$(document).ready(function(){
-			var results = {"errors":"39,2,7,0,8,0,10,0,12","connection-rate":"10","response-time":"50.6","status-codes":"0,60,0,39,0","transfer-time":"811.4","replies":"99","test-duration":"90","requests":"99","request-rate":"1.1"};
+			{% autoescape on %}
+				var results = {{jsonString | safe}};
+			{% endautoescape %}
 
 			//Information on run
 
@@ -183,7 +185,7 @@
 
 			   // General
 			   background2: '#E0E0E8'
-			   
+
 			};
 
 			// Apply the theme
