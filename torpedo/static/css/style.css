@@ -24,6 +24,10 @@ hr {
 	margin-left: 25px;
 }
 
+input[type=checkbox]{
+	margin-right: 5px !important;
+}
+
 .content, #user-dropdown{
 	width: 60%;
 	max-width: 900px;
