@@ -15,7 +15,7 @@
 		<h3 id='total-errors'></h3>
 		<div id='errors-chart' class="chart-container"></div>
 		<h2>Status codes</h2>
-		<div id="status-codes" class="chart-container"></div>
+		<div id="status-codes-chart" class="chart-container"></div>
 	</div>
 	<script>
 		$(document).ready(function(){
@@ -47,10 +47,14 @@
 			var status_codes_key_value = [];
 			$.each(status_codes, function (index, code){
 				status_codes_key_value.push([code, parseInt(status_codes_results[index])]);
-			});		
+			});
 
-			$(function () {
-				    $('#status-codes').highcharts({
+			create_chart('#errors-chart', errors_key_value);
+			create_chart('#status-codes-chart', status_codes_key_value);
+
+			function create_chart(el_id, data){
+				$(function () {
+				    $(el_id).highcharts({
 				        chart: {
 				            type: 'column'
 				        },
@@ -81,47 +85,12 @@
 				        },
 				        series: [{
 				            name: 'Codes',
-				            data: status_codes_key_value
+				            data: data
 				        }]
 				    });
-			});
+				});
+			}
 
-			$(function () {
-				    $('#errors-chart').highcharts({
-				        chart: {
-				            type: 'column'
-				        },
-				        title: {
-				            text: ''
-				        },
-				        xAxis: {
-				            type: 'category',
-				            labels: {
-				                rotation: -45,
-				                style: {
-				                    fontSize: '12px',
-				                    fontFamily: 'Arial, sans-serif'
-				                }
-				            }
-				        },
-				        yAxis: {
-				            min: 0,
-				            title: {
-				                text: 'Number of instances'
-				            }
-				        },
-				        legend: {
-				            enabled: false
-				        },
-				        tooltip: {
-				            pointFormat: 'Number of instances <b>{point.y}</b>'
-				        },
-				        series: [{
-				            name: 'Types',
-				            data: errors_key_value
-				        }]
-				    });
-			});
 			Highcharts.createElement('link', {
 			   href: '//fonts.googleapis.com/css?family=Signika:400,700',
 			   rel: 'stylesheet',
