@@ -17,22 +17,23 @@ from django.http import HttpResponse
 # 3rd party
 from braces.views import LoginRequiredMixin
 import requests
+import logfmt
 
 # Models
 from torpedo.models import TestRun
 
-# Constants
+
+###################
+#                 #
+#    CONSTANTS    #
+#                 #
+###################
+
 SERVERS = [
 	'http://noc2.srv.oz.com:6666'
 ];
 
-##############
-#            #
-#    VARS    #
-#            #
-##############
-
-source_regions = {
+SOURCE_REGIONS = {
     'us-east-1' : 'ec2.us-east-1.amazonaws.com',
     'us-west-2' : 'ec2.us-west-2.amazonaws.com',
     'us-west-1' : 'ec2.us-west-1.amazonaws.com',
@@ -43,6 +44,30 @@ source_regions = {
     'ap-northeast-1' : 'ec2.ap-northeast-1.amazonaws.com',
     'sa-east-1' : 'ec2.sa-east-1.amazonaws.com'
 }
+
+
+###############
+#             #
+#    UTILS    #
+#             #
+###############
+
+def prune_logs(log):
+    # Prune away non-app[web] logs, Isolate JSON part of logs
+    log = map(lambda l: l.split(': ', 1)[1], filter(lambda l: l[:7] == 'app[web', map(lambda l: l.split(' ', 1)[1], log)))
+    # Parse each line into dict
+    log = map(lambda l: json.loads(l), log)
+    # Prune away requests that are not GET with status 200
+    log = filter(lambda l: 'status' in l and
+                           l['status'] == 200 and
+                           'method' in l and
+                           l['method'] == 'GET' and
+                           'url' in l, log)
+
+    log = map(lambda l: l['url'], log)
+
+    return log
+
 
 ################
 #              #
@@ -67,9 +92,15 @@ class upload_log(LoginRequiredMixin, View):
     template_name = 'torpedo/upload_log.html'
 
     def post(self, request):
-        user = request.POST.get('user')
-        print(user)
-        print(source_regions)
+        user = request.user
+        log = prune_logs(open(request.POST.get('log'), 'r'))
+        log = '\x00'.join(log)
+        cons = request.POST.get('parallel', 0)
+        rate = request.POST.get('rate', 0)
+        calls = request.POST.get('requests', 0)
+
+        
+
         return render(request, self.template_name, locals())
 
 
