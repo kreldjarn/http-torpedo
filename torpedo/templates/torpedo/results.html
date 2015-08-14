@@ -3,26 +3,60 @@
 	<h1>Results from load test</h1>
 	<hr />
 	<div id="results-container">
-		<h2 id="first-heading-results">Errors returned</h2>
-		<h3 id='total-errors'></h2>
-		<div id="response-times-container" class="chart-container"></div>
-		<h2 id="first-heading-results">Status codes</h2>
-		<div id="response-times-container" class="chart-container"></div>
+		<h2 id="first-heading-results">Run statistics</h2>
+		<h3 id='duration'></h3>
+		<h3 id='connections'></h3>
+		<h3 id='requests'></h3>
+		<h3 id='requests-rate'></h3>
+		<h3 id='replies'></h3>
+		<h3 id='response-time'></h3>
+		<h3 id='transfer-time'></h3>
+		<h2>Errors returned</h2>
+		<h3 id='total-errors'></h3>
+		<div id='errors-chart' class="chart-container"></div>
+		<h2>Status codes</h2>
+		<div id="status-codes-chart" class="chart-container"></div>
 	</div>
 	<script>
 		$(document).ready(function(){
-			var results = {"errors":"39,2,7,0,8,0,10,0,12","connection-rate":"1.1","response-time":"50.6","status-codes":"0,1,0,0,0","transfer-time":"811.4","replies":"1","test-duration":"0.912","requests":"1","request-rate":"1.1"};
-			//Parsins error results and creating array of key value pairs.
-			var errors = results.errors.split(',');
-			var error_codes = ['Client timeout', 'Socket timeout', 'Connection refused', 'Connection reset', 'File descriptor unavailable', 'Address unavailable', 'ftab full', 'Other'];
-			var error_results = [];
-			$.each(error_codes, function (index, code){
-				error_results.push([code, parseInt(errors[index+1])]);
-			})
-			$('#total-errors').text('Total errors: ' + errors[0]);
+			{% autoescape on %}
+				var results = {{jsonString | safe}};
+			{% endautoescape %}
 
-			$(function () {
-				    $('#response-times-container').highcharts({
+			//Information on run
+
+			$('#duration').text('Test duration: ' + results['test-duration'] + ' seconds');
+			$('#connections').text('Connections: ' + results['connection-rate'] + ' per second');
+			$('#requests').text('Total requests: ' + results['requests']);
+			$('#request-rate').text('Requests per second: ' + results['request-rate']);
+			$('#replies').text('Replies: ' + results['replies']);
+			$('#response-time').text('Average response time: ' + results['response-time'] + ' milliseconds');
+			$('#transfer-time').text('Average transfer time: ' + results['transfer-time'] + ' milliseconds');
+
+			//Parsins error results and creating array of key value pairs.
+
+			var error_codes = ['Client timeout', 'Socket timeout', 'Connection refused', 'Connection reset', 'File descriptor unavailable', 'Address unavailable', 'ftab full', 'Other'];
+			var errors_results = results['errors'].split(',');
+			var errors_key_value = [];
+			$.each(error_codes, function (index, code){
+				errors_key_value.push([code, parseInt(errors_results[index+1])]);
+			});
+			$('#total-errors').text('Total errors: ' + errors_results[0]);
+
+			//Parsins error results and creating array of key value pairs.
+			var status_codes = ['100', '200', '300', '400', '500'];
+			var status_codes_results = results['status-codes'].split(',');
+			var status_codes_key_value = [];
+			$.each(status_codes, function (index, code){
+				status_codes_key_value.push([code, parseInt(status_codes_results[index])]);
+			});
+
+			create_chart('#errors-chart', errors_key_value);
+			create_chart('#status-codes-chart', status_codes_key_value);
+
+			function create_chart(el_id, data){
+				$(function () {
+				    $(el_id).highcharts({
 				        chart: {
 				            type: 'column'
 				        },
@@ -52,17 +86,13 @@
 				            pointFormat: 'Number of instances <b>{point.y}</b>'
 				        },
 				        series: [{
-				            name: 'Types',
-				            data: error_results
+				            name: 'Codes',
+				            data: data
 				        }]
 				    });
-			});
-			/**
-			 * Sand-Signika theme for Highcharts JS
-			 * @author Torstein Honsi
-			 */
+				});
+			}
 
-			// Load the fonts
 			Highcharts.createElement('link', {
 			   href: '//fonts.googleapis.com/css?family=Signika:400,700',
 			   rel: 'stylesheet',
@@ -155,7 +185,7 @@
 
 			   // General
 			   background2: '#E0E0E8'
-			   
+
 			};
 
 			// Apply the theme

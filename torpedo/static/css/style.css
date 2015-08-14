@@ -87,7 +87,6 @@ input:-ms-input-placeholder {
 }
 
 
-
 label.checkbox-label {
     line-height: 15px;
 }
@@ -105,6 +104,7 @@ input[type=checkbox] {
     overflow: hidden;
 }
 
+
 .chart-container{
 	margin: 40px auto;
 	height: 400px;
@@ -112,9 +112,10 @@ input[type=checkbox] {
 	padding-right: 20px;
 }
 
-#first-heading-results{
+#results-container h2{
 	margin-top: 40px;
 }
+
 
 #results-container{
 	padding-left: 20px;
