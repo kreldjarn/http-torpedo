@@ -4,14 +4,16 @@
 <hr />
 
 <form action="{% url 'upload_log' %}" method="post">
+	{% csrf_token %}
 	<div class="input-container">
 		<label for="log">Select log file</label>
 		<input class="input-field" type="file" name="log" id="log" />
-		<label for="rps">Requests per second</label>
-		<input class="input-field" type="number" name="rps" id="rps" />
-		<label for="duration">Duration in seconds</label>
-		<input class="input-field" type="number" name="duration" id="duration" />
-		
+		<label for="request">Number of requests per session</label>
+		<input class="input-field" type="number" name="request" id="request" />
+		<label for="parallel">Number of parallel sessions</label>
+		<input class="input-field" type="number" name="parallel" id="parallel" />
+
+
 		<label>Source regions</label>
 
 		<div class="regions">
